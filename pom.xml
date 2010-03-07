@@ -39,12 +39,12 @@
 			<version>1.3.0</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.google</groupId>
-			<artifactId>appengine-sdk-1.3.0-api</artifactId>
-			<version>1.3.0</version>
-			<scope>compile</scope>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.google</groupId>-->
+<!--			<artifactId>appengine-sdk-1.3.0-api</artifactId>-->
+<!--			<version>1.3.0</version>-->
+<!--			<scope>compile</scope>-->
+<!--		</dependency>-->
 
 		<dependency>
 			<groupId>com.google</groupId>
@@ -84,10 +84,14 @@
 				<version>2.3</version>
 				<configuration>
 					<additionalProjectnatures>
-						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+						<projectnature>
+						org.springframework.ide.eclipse.core.springnature
+						</projectnature>
 					</additionalProjectnatures>
 					<additionalBuildcommands>
-						<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+						<buildcommand>
+						org.springframework.ide.eclipse.core.springbuilder
+						</buildcommand>
 					</additionalBuildcommands>
 					<downloadSources>true</downloadSources>
 					<downloadJavadocs>true</downloadJavadocs>
@@ -105,6 +109,29 @@
 				</configuration>
 			</plugin>
 
+			<plugin>
+				<groupId>com.djimenez.utilities</groupId>
+				<artifactId>remote-deploy-maven-plugin</artifactId>
+				<version>1.0-SNAPSHOT</version>
+				<configuration>
+					<deployDirectory>${deploy.directory}</deployDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>deploy</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>hot-deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
+
+	<properties>
+		<deploy.directory>
+			/home/${user.name}/proyectos/servers/apache-tomcat-6.0.20/webapps
+		</deploy.directory>
+	</properties>
 </project>
